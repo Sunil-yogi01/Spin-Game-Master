@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Styles remain unchanged from your code */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      text-decoration: none;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1d2b64, #f8cdda);
+      color: #fff;
+      padding-top: 60px;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 60px;
+      background-color: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: gold;
+    }
+
+    #mysidenav {
+      position: fixed;
+      top: 60px;
+      right: 0;
+      width: 70px;
+      height: 100%;
+      background-color: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      z-index: 999;
+    }
+
+    #mysidenav a {
+      margin: 15px 0;
+      font-size: 22px;
+      color: #f1c40f;
+      background: #222;
+      border-radius: 12px;
+      padding: 14px;
+      width: 48px;
+      height: 48px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    #mysidenav a:hover {
+      background-color: #f1c40f;
+      color: #111;
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .login-container {
+      max-width: 400px;
+      margin: 80px auto;
+      padding: 30px;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: gold;
+    }
+
+    .login-container input[type="text"],
+    .login-container input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      background: #fff;
+      color: #000;
+    }
+
+    .login-container input[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      background-color: gold;
+      color: #111;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .login-container input[type="submit"]:hover {
+      background-color: #f1c40f;
+    }
+
+    .login-container p {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .login-container a {
+      color: #f1c40f;
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">🎰 Spin Game Master</div>
+  </div>
+
+  <div id="mysidenav">
+    <a href="game .html" title="Profile"><i class="fa fa-rotate"></i></a>
+    <a href="Withdraw page .html" title="Withdraw"><i class="fa fa-bank"></i></a>
+    <a href="Notification .html" title="Chat"><i class="fa fa-bell"></i></a>
+    <a href="https://wa.me/?text=Hello%2C%20check%20this%20out!" target="_blank" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  </div>
+
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <input  type="submit" value="Login">
+    </form>
+    <p>Don't have an account? <a href="#">Sign up</a></p>
+    <div class="message" id="loginMessage"></div>
+  </div>
+
+  <script>
+    // List of valid users
+    const validUsers = [
+      { username: "john", password: "john123" },
+      { username: "sarah", password: "sarah456" },
+      { username: "admin", password: "admin123" } ,
+      { username: "Sunil", password: "12345" }
+    ];
+
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const message = document.getElementById("loginMessage");
+
+      const foundUser = validUsers.find(user => user.username === username && user.password === password);
+
+      if (foundUser) {
+        message.style.color = "lightgreen";
+        message.textContent = "Login successful! Redirecting...";
+        // Redirect to dashboard or home
+        setTimeout(() => {
+          window.location.href = "game .html";
+        }, 1500);
+      } else {
+        message.style.color = "salmon";
+        message.textContent = "Incorrect username or password.";
+      }
+    });
+  </script>
+</body>
+</html>
