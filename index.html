@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>  
+<head>
 	
-	<meta name="google-site-verification" content="amSBcoHghOQHpA9_5MR5yFKwdsyHKj7FZA-1siFeKmE" />
 	<title>Spin Game Master</title>
+	<link rel="icon"  href="01.jpg">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 	<style> 
@@ -20,6 +20,7 @@
 	color: #fff;
 	padding-top: 49px;
 	overflow-x: hidden; 
+	background-attachment: fixed;
 }
 
 		/* Navbar */
@@ -286,7 +287,13 @@
 		}  
 
 			
-
+          window.alert("Welcome to Spine Game Master");
+          
+           fetch("https://script.google.com/macros/s/AKfycbxxxxxxxxxxxxxxxx/exec", {
+  method: "POST",
+  body: JSON.stringify({ username: username }),
+  headers: {
+    "Content-Type": "application/json"
 
 	</script>
 </body>
