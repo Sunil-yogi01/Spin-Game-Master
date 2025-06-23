@@ -17,6 +17,7 @@
       color: #fff;
       padding-top: 60px;
       overflow-x: hidden;
+      background-attachment: fixed;
     }
 
     .navbar {
@@ -139,7 +140,7 @@
   </div>
 
   <div id="mysidenav">
-    <a href="game .html" title="Profile"><i class="fa fa-rotate"></i></a>
+    <a href="index.html" title="Profile"><i class="fa fa-rotate"></i></a>
     <a href="Withdraw page .html" title="Withdraw"><i class="fa fa-bank"></i></a>
     <a href="Notification .html" title="Chat"><i class="fa fa-bell"></i></a>
     <a href="https://wa.me/?text=Hello%2C%20check%20this%20out!" target="_blank" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -152,6 +153,8 @@
       <input type="password" id="password" placeholder="Password" required>
       <input  type="submit" value="Login">
     </form>
+    <p>User Name : Sunil</p>
+    <p>Passward : 12345</p>
     <p>Don't have an account? <a href="#">Sign up</a></p>
     <div class="message" id="loginMessage"></div>
   </div>
@@ -159,10 +162,7 @@
   <script>
     // List of valid users
     const validUsers = [
-      { username: "john", password: "john123" },
-      { username: "sarah", password: "sarah456" },
-      { username: "admin", password: "admin123" } ,
-      { username: "Sunil", password: "12345" }
+           { username: "Sunil", password: "12345" }
     ];
 
     document.getElementById("loginForm").addEventListener("submit", function(event) {
@@ -179,7 +179,7 @@
         message.textContent = "Login successful! Redirecting...";
         // Redirect to dashboard or home
         setTimeout(() => {
-          window.location.href = "game .html";
+          window.location.href = "index.html";
         }, 1500);
       } else {
         message.style.color = "salmon";
