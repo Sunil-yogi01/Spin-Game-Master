@@ -4,6 +4,7 @@
   <link rel="icon" href="title.jpg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    /* (Keep your original CSS unchanged) */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -154,61 +155,40 @@
     <div class="message" id="loginMessage"></div>
   </div>
 
-  <script>
-    document.getElementById("loginForm").addEventListener("submit", function(event) {
-      event.preventDefault();
+  
+   <script>
+  document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
 
-      const username = document.getElementById("username").value.trim();
-      const fullname = document.getElementById("fullname").value.trim();
-      const password = document.getElementById("password").value.trim();
-      const message = document.getElementById("loginMessage");
+    const username = document.getElementById("username").value.trim();
+    const fullname = document.getElementById("fullname").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const message = document.getElementById("loginMessage");
 
-      if (!username || !fullname) {
-        message.style.color = "salmon";
-        message.textContent = "Please enter both username and full name.";
-        return;
-      }
+    if (!username || !fullname) {
+      message.style.color = "salmon";
+      message.textContent = "Please enter both username and full name.";
+      return;
+    }
 
-      if (password.length < 6) {
-        message.style.color = "salmon";
-        message.textContent = "Password must be at least 6 characters.";
-        return;
-      }
+    if (password.length < 6) {
+      message.style.color = "salmon";
+      message.textContent = "Password must be at least 6 characters.";
+      return;
+    }
 
-      // ✅ Google Apps Script URL
-      const scriptURL = "https://script.google.com/macros/s/AKfycbytKIbA4xK-a4dvtHhbe_FtPK_J2C8zbIpy2Th8ZaHKD-eBbjBfpZoqqaX5GtFB64TohQ/exec";
+    // Save data to localStorage
+    localStorage.setItem("username", username);
+    localStorage.setItem("fullname", fullname);
 
-      // ✅ Send data to Google Sheet
-      fetch(scriptURL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username: username,
-          fullname: fullname,
-          password: password
-        })
-      })
-      .then(response => response.text())
-      .then(result => {
-        console.log("Success:", result);
+    message.style.color = "lightgreen";
+    message.textContent = "Login successful! Redirecting...";
 
-        // Save to local storage (optional)
-        localStorage.setItem("username", username);
-        localStorage.setItem("fullname", fullname);
+    setTimeout(() => {
+      window.location.href = "Profile.html";
+    }, 1500);
+  });
+</script>
 
-        message.style.color = "lightgreen";
-        message.textContent = "Login successful! Redirecting...";
-
-        setTimeout(() => {
-          window.location.href = "Profile.html";
-        }, 1500);
-      })
-      .catch(error => {
-        console.error("Error!", error.message);
-        message.style.color = "red";
-        message.textContent = "Login failed. Please try again.";
-      });
-    });
-  </script>
 </body>
 </html>
