@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Spin Game Master</title>
+  <link rel="icon" href="title.jpg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; text-decoration: none; }
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1d2b64, #f8cdda);
+      color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      transition: background 0.4s ease, color 0.4s ease;
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 60px;
+      background-color: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .navbar .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: gold;
+    }
+    #mysidenav {
+      position: fixed;
+      top: 60px;
+      right: 0;
+      width: 70px;
+      height: 100%;
+      background-color: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      z-index: 999;
+    }
+    #mysidenav a {
+      margin: 15px 0;
+      font-size: 22px;
+      color: #f1c40f;
+      background: #222;
+      border-radius: 12px;
+      padding: 14px;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+    #mysidenav a:hover {
+      background-color: #f1c40f;
+      color: #111;
+      transform: scale(1.1);
+    }
+    .profile-wrapper {
+      position: relative;
+    }
+    .profile-card {
+      background: linear-gradient(33deg, #1D2CEE, #F8CD06);
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      width: 360px;
+      text-align: center;
+      padding: 30px 25px;
+    }
+    .profile-img {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #e0e0e0;
+    }
+    .upload-button {
+      margin-top: 10px;
+    }
+    .upload-button input[type="file"] { display: none; }
+    .upload-button label {
+      background-color: #28a745;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+    .upload-button label:hover { background-color: #218838; }
+    .username, .fullname { color: gold; }
+    .username { font-size: 22px; font-weight: bold; margin-top: 10px; }
+    .fullname { font-size: 16px; margin-bottom: 20px; }
+    .setting-option {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 30px;
+      color: white;
+      padding: 10px 0;
+      cursor: pointer;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .setting-option:hover { color: gold; }
+    .arrow { font-weight: bold; }
+    .language-list, .theme-list {
+      position: absolute;
+      top: 15%;
+      left: 100%;
+      margin-left: 15px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      padding: 10px;
+      display: none;
+      flex-direction: column;
+      min-width: 140px;
+      z-index: 10;
+    }
+    .language-list.visible, .theme-list.visible { display: flex; }
+    .language-list div, .theme-list div {
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.2s;
+      color: #000;
+      font-weight: 600;
+    }
+    .language-list div:hover, .theme-list div:hover { background-color: #eee; }
+
+    /* Dark Theme */
+    body.dark-theme {
+      background: #121212;
+      color: #eee;
+    }
+    body.dark-theme .navbar, body.dark-theme #mysidenav { background: #222; }
+    body.dark-theme .profile-card { background: linear-gradient(33deg, #000, #333); }
+    body.dark-theme #mysidenav a { background: #333; }
+    body.dark-theme .setting-option { color: #eee; }
+    body.dark-theme .setting-option:hover { color: gold; }
+
+    /* White Theme */
+    body.white-theme {
+      background: #fff;
+      color: #000;
+    }
+    body.white-theme .navbar { background: #eee; }
+    body.white-theme .profile-card { background: linear-gradient(33deg, #f9f9f9, #fffac0); }
+    body.white-theme #mysidenav { background: #eee; }
+    body.white-theme #mysidenav a { background: #ddd; color: #333; }
+    body.white-theme .setting-option { color: #444; }
+    body.white-theme .setting-option:hover { color: #b8860b; }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">🎰 Spin Game Master</div>
+  </div>
+
+  <div id="mysidenav">
+    <a href="index.html"><i class="fa fa-rotate"></i></a>
+    <a href="Withdraw page .html"><i class="fa fa-bank"></i></a>
+    <a href="Notification .html"><i class="fa fa-bell"></i></a>
+    <a href="https://wa.me/?text=Hello%2C%20check%20this%20out!" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  </div>
+
+  <div class="profile-wrapper">
+    <div class="profile-card">
+      <img id="profileImage" class="profile-img" src="https://via.placeholder.com/130" alt="Profile Photo" />
+      <div class="upload-button">
+        <label for="uploadPhoto">Add Photo</label>
+        <input type="file" id="uploadPhoto" accept="image/*" />
+      </div>
+      <div class="username" id="displayUsername">@username123</div>
+      <div class="fullname" id="displayFullname">SUNIL YOGI</div>
+
+      <hr />
+      <div class="setting-option" onclick="toggleLanguageList()">
+        <span id="labelLanguage">Language</span>
+        <span class="arrow">></span>
+      </div>
+      <hr />
+      <div class="setting-option" onclick="toggleThemeList()">
+        <span id="labelTheme">Theme</span>
+        <span class="arrow">></span>
+      </div>
+      <hr />
+      <div class="setting-option" onclick="openHelpEmail()">
+        <span id="labelHelp">Help</span>
+        <span class="arrow">></span>
+      </div>
+      <hr />
+    </div>
+
+    <div id="languageList" class="language-list">
+      <div onclick="selectLanguage('en')">English</div>
+      <div onclick="selectLanguage('hi')">Hindi</div>
+      <div onclick="selectLanguage('es')">Spanish</div>
+    </div>
+
+    <div id="themeList" class="theme-list">
+      <div onclick="selectTheme('original')">Original</div>
+      <div onclick="selectTheme('dark')">Dark</div>
+      <div onclick="selectTheme('white')">White</div>
+    </div>
+  </div>
+
+  <script>
+    const translations = {
+      en: { language: "Language", theme: "Theme", help: "Help" },
+      hi: { language: "भाषा", theme: "थीम", help: "सहायता" },
+      es: { language: "Idioma", theme: "Tema", help: "Ayuda" }
+    };
+
+    function updateLabels(lang) {
+      const t = translations[lang] || translations.en;
+      document.getElementById("labelLanguage").textContent = t.language;
+      document.getElementById("labelTheme").textContent = t.theme;
+      document.getElementById("labelHelp").textContent = t.help;
+    }
+
+    function selectLanguage(lang) {
+      localStorage.setItem("selectedLanguage", lang);
+      updateLabels(lang);
+      document.getElementById("languageList").classList.remove("visible");
+    }
+
+    function toggleLanguageList() {
+      document.getElementById("languageList").classList.toggle("visible");
+      document.getElementById("themeList").classList.remove("visible");
+    }
+
+    function toggleThemeList() {
+      document.getElementById("themeList").classList.toggle("visible");
+      document.getElementById("languageList").classList.remove("visible");
+    }
+
+    function applyTheme(theme) {
+      document.body.classList.remove("dark-theme", "white-theme");
+      if (theme === "dark") document.body.classList.add("dark-theme");
+      if (theme === "white") document.body.classList.add("white-theme");
+    }
+
+    function selectTheme(theme) {
+      localStorage.setItem("selectedTheme", theme);
+      applyTheme(theme);
+      document.getElementById("themeList").classList.remove("visible");
+    }
+
+    function openHelpEmail() {
+      const email = "sunilkumaryogi8696@gmail.com";
+      const subject = encodeURIComponent("Support Request - Spin Game Master");
+      const body = encodeURIComponent("Hi Sunil,\n\nI need help with...");
+      window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`, "_blank");
+    }
+
+    document.addEventListener("click", (e) => {
+      if (!document.getElementById("languageList").contains(e.target) && !e.target.closest("#labelLanguage")) {
+        document.getElementById("languageList").classList.remove("visible");
+      }
+      if (!document.getElementById("themeList").contains(e.target) && !e.target.closest("#labelTheme")) {
+        document.getElementById("themeList").classList.remove("visible");
+      }
+    });
+
+    // On Load
+    const savedLang = localStorage.getItem("selectedLanguage") || "en";
+    const savedTheme = localStorage.getItem("selectedTheme") || "original";
+    updateLabels(savedLang);
+    applyTheme(savedTheme);
+
+    const username = localStorage.getItem("username");
+    const fullname = localStorage.getItem("fullname");
+    const storedImage = localStorage.getItem("profileImage");
+
+    if (username) document.getElementById("displayUsername").textContent = "@" + username;
+    if (fullname) document.getElementById("displayFullname").textContent = fullname;
+    if (storedImage) document.getElementById("profileImage").src = storedImage;
+
+    document.getElementById("uploadPhoto").addEventListener("change", function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const imgURL = e.target.result;
+          document.getElementById("profileImage").src = imgURL;
+          localStorage.setItem("profileImage", imgURL);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+</body>
+</html>
