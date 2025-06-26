@@ -1,92 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	
 	<title>Spin Game Master</title>
+	<link rel="icon" href="title.jpg">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 	<style> 
 		* {
 			box-sizing: border-box;
 			margin: 0;
-			padding: 0; 
+			padding: 0;
 			text-decoration: none;
 		}
-
-	 body {
-	font-family: 'Segoe UI', sans-serif;
-	background: linear-gradient(135deg, #1d2b64, #f8cdda);
-	color: #fff;
-	padding-top: 49px;
-	overflow-x: hidden; 
-	background-attachment: fixed;
-}
-
-		/* Navbar */
-	 .navbar {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	height: 60px;
-	background-color: #111;
-	display: flex;
-	justify-content: center; /* center the content horizontally */
-	align-items: center;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-	z-index: 1000;
-}
-
-.navbar .logo {
-	font-size: 22px;
-	font-weight: bold;
-	color: gold;
-	text-align: center;
-}
-
-
-		/* Sidebar icons */
-		/* Sidebar */
-#mysidenav {
-	position: fixed;
-	top: 60px;
-	right: 0; /* moved from left to right */
-	width: 70px;
-	height: 100%;
-	background-color: #111;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding-top: 20px;
-	z-index: 999;
-}
-
-
-#mysidenav a {
-	margin: 15px 0;
-	font-size: 22px;
-	color: #f1c40f;
-	background: #222;
-	border-radius: 12px;
-	padding: 14px;
-	width: 48px;
-	height: 48px;
-	text-align: center;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	transition: all 0.3s ease;
-	font-family: 'Segoe UI', sans-serif;
-}
-
-#mysidenav a:hover {
-	background-color: #f1c40f;
-	color: #111;
-	transform: scale(1.1);
-	box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
-
-		/* Wheel Game Styles */
+		body {
+			font-family: 'Segoe UI', sans-serif;
+			background: linear-gradient(135deg, #1d2b64, #f8cdda);
+			color: #fff;
+			padding-top: 49px;
+			overflow-x: hidden;
+			background-attachment: fixed;
+		}
+		.navbar {
+			position: fixed;
+			top: 0;
+			width: 100%;
+			height: 60px;
+			background-color: #111;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+			z-index: 1000;
+		}
+		.navbar .logo {
+			font-size: 22px;
+			font-weight: bold;
+			color: gold;
+			text-align: center;
+		}
+		#mysidenav {
+			position: fixed;
+			top: 60px;
+			right: 0;
+			width: 70px;
+			height: 100%;
+			background-color: #111;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding-top: 20px;
+			z-index: 999;
+		}
+		#mysidenav a {
+			margin: 15px 0;
+			font-size: 22px;
+			color: #f1c40f;
+			background: #222;
+			border-radius: 12px;
+			padding: 14px;
+			width: 48px;
+			height: 48px;
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			transition: all 0.3s ease;
+			font-family: 'Segoe UI', sans-serif;
+		}
+		#mysidenav a:hover {
+			background-color: #f1c40f;
+			color: #111;
+			transform: scale(1.1);
+			box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+		}
 		.wheel-container {
 			position: relative;
 			width: 320px;
@@ -98,7 +84,6 @@
 			box-shadow: 0 0 30px rgba(0,0,0,0.5);
 			background-color: #222;
 		}
-
 		.wheel {
 			width: 100%;
 			height: 100%;
@@ -115,7 +100,6 @@
 			);
 			transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1);
 		}
-
 		.pointer {
 			position: absolute;
 			top: 261px;
@@ -127,7 +111,6 @@
 			border-right: 18px solid transparent;
 			border-bottom: 36px solid #f1c40f;
 		}
-
 		.btn {
 			display: block;
 			margin: 20px auto 10px;
@@ -142,16 +125,13 @@
 			box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 			transition: background 0.3s;
 		}
-
 		.btn:hover {
 			background: linear-gradient(to right, #ff4e50, #f9d423);
 		}
-
 		.btn:disabled {
 			background: #888;
 			cursor: not-allowed;
 		}
-
 		#result, #coins, #spins-left {
 			text-align: center;
 			font-size: 20px;
@@ -159,13 +139,11 @@
 			margin-top: 10px;
 			text-shadow: 1px 1px 3px #000;
 		}
-
 		@media (max-width: 600px) {
 			.wheel-container {
 				width: 90%;
 				height: auto;
 			}
-
 			#mysidenav a {
 				font-size: 20px;
 				padding: 12px;
@@ -184,10 +162,10 @@
 
 	<!-- Side Menu -->
 	<div id="mysidenav">
-		<a href="log in page.html" id="about" title="Profile"><i class="fa fa-user"></i></a>
-		<a href="Withdraw page .html" id="blog" title="Withdraw"><i class="fa fa-bank"></i></a>
-		<a href="Notification .html" id="project" title="Chat"><i class="fa fa-bell"></i></a>
-		<a href="https://wa.me/?text=Hello%2C%20check%20this%20out!" target="_blank" id="contact" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+		<a href="log in page.html" title="Profile"><i class="fa fa-user"></i></a>
+		<a href="Withdraw page .html" title="Withdraw"><i class="fa fa-bank"></i></a>
+		<a href="Notification .html" title="Chat"><i class="fa fa-bell"></i></a>
+		<a href="https://wa.me/?text=Hello%2C%20check%20this%20out!" target="_blank" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
 	</div>
 
 	<!-- SPIN GAME UI -->
@@ -201,9 +179,8 @@
 
 	<div id="spins-left">Spins Left Today: 3</div>
 	<div id="coins">Current Coins: 0</div>
-	<div id="result"></div> 
+	<div id="result"></div>
 
-	<!-- SCRIPT -->
 	<script>
 		const wheel = document.getElementById("wheel");
 		const spinBtn = document.getElementById("spin-btn");
@@ -269,6 +246,10 @@
 				gameState.coins += prize.value;
 				gameState.total += prize.value;
 
+				// Show winning alert
+				alert(`🎊 Congratulations! You won ${prize.label}`);
+
+				// Update result area too
 				result.textContent = `🎉 You won ${prize.label}!`;
 				updateUI();
 				saveState();
@@ -283,18 +264,10 @@
 			coinsDisplay.textContent = `Current Coins: ${gameState.coins}`;
 			spinsLeftDisplay.textContent = `Spins Left Today: ${gameState.spinsLeft}`;
 			spinBtn.disabled = gameState.spinsLeft <= 0;
-		}  
+		}
 
-			
-          window.alert("Welcome to Spine Game Master");
-         fetch("https://script.google.com/macros/s/AKfycbxxxxxxxxxxxxxxxx/exec", {
-         method: "POST",
-         body: JSON.stringify({ username: username }),
-         headers: {
-        "Content-Type": "application/json"
-           }
-          });
-
+		// Show welcome message
+		window.alert("Welcome to Spin Game Master");
 	</script>
 </body>
 </html>
