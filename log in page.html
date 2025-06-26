@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="icon" href="title.jpg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Styles remain unchanged from your code */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -91,8 +91,7 @@
       color: gold;
     }
 
-    .login-container input[type="text"],
-    .login-container input[type="password"] {
+    .login-container input {
       width: 100%;
       padding: 12px;
       margin: 10px 0;
@@ -103,13 +102,9 @@
     }
 
     .login-container input[type="submit"] {
-      width: 100%;
-      padding: 12px;
       background-color: gold;
       color: #111;
       font-weight: bold;
-      border: none;
-      border-radius: 8px;
       cursor: pointer;
       transition: background 0.3s;
     }
@@ -150,41 +145,69 @@
     <h2>Login</h2>
     <form id="loginForm">
       <input type="text" id="username" placeholder="Username" required>
-      <input type="password" id="password" placeholder="Password" required>
-      <input  type="submit" value="Login">
+      <input type="text" id="fullname" placeholder="Enter Your Full Name" required>
+      <input type="password" id="password" placeholder="Password (Min 6 characters)" required>
+      <input type="submit" value="Login">
     </form>
-    <p>User Name : Sunil</p>
-    <p>Passward : 12345</p>
+    
     <p>Don't have an account? <a href="#">Sign up</a></p>
     <div class="message" id="loginMessage"></div>
   </div>
 
   <script>
-    // List of valid users
-    const validUsers = [
-           { username: "Sunil", password: "12345" }
-    ];
-
     document.getElementById("loginForm").addEventListener("submit", function(event) {
       event.preventDefault();
 
       const username = document.getElementById("username").value.trim();
+      const fullname = document.getElementById("fullname").value.trim();
       const password = document.getElementById("password").value.trim();
       const message = document.getElementById("loginMessage");
 
-      const foundUser = validUsers.find(user => user.username === username && user.password === password);
+      if (!username || !fullname) {
+        message.style.color = "salmon";
+        message.textContent = "Please enter both username and full name.";
+        return;
+      }
 
-      if (foundUser) {
+      if (password.length < 6) {
+        message.style.color = "salmon";
+        message.textContent = "Password must be at least 6 characters.";
+        return;
+      }
+
+      // ✅ Google Apps Script URL
+      const scriptURL = "https://script.google.com/macros/s/AKfycbytKIbA4xK-a4dvtHhbe_FtPK_J2C8zbIpy2Th8ZaHKD-eBbjBfpZoqqaX5GtFB64TohQ/exec";
+
+      // ✅ Send data to Google Sheet
+      fetch(scriptURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: username,
+          fullname: fullname,
+          password: password
+        })
+      })
+      .then(response => response.text())
+      .then(result => {
+        console.log("Success:", result);
+
+        // Save to local storage (optional)
+        localStorage.setItem("username", username);
+        localStorage.setItem("fullname", fullname);
+
         message.style.color = "lightgreen";
         message.textContent = "Login successful! Redirecting...";
-        // Redirect to dashboard or home
+
         setTimeout(() => {
-          window.location.href = "index.html";
+          window.location.href = "Profile.html";
         }, 1500);
-      } else {
-        message.style.color = "salmon";
-        message.textContent = "Incorrect username or password.";
-      }
+      })
+      .catch(error => {
+        console.error("Error!", error.message);
+        message.style.color = "red";
+        message.textContent = "Login failed. Please try again.";
+      });
     });
   </script>
 </body>
