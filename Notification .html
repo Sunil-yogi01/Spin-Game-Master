@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Notifications - Spin Game Master</title>
+  <link rel="icon" href="title.jpg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-        text-decoration: none;
+      text-decoration: none;
     }
 
     body {
+      font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #1d2b64, #f8cdda);
       color: #fff;
       padding-top: 60px;
+      overflow-x: hidden;
       background-attachment: fixed;
     }
 
-    /* Navbar */
     .navbar {
       position: fixed;
       top: 0;
@@ -40,151 +39,176 @@
       color: gold;
     }
 
-
-     /* Sidebar icons */
-    /* Sidebar */
-#mysidenav {
-  position: fixed;
-  top: 60px;
-  right: 0; /* moved from left to right */
-  width: 70px;
-  height: 100%;
-  background-color: #111;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 20px;
-  z-index: 999;
-}
-
-
-#mysidenav a {
-  margin: 15px 0;
-  font-size: 22px;
-  color: #f1c40f;
-  background: #222;
-  border-radius: 12px;
-  padding: 14px;
-  width: 48px;
-  height: 48px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.3s ease;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-#mysidenav a:hover {
-  background-color: #f1c40f;
-  color: #111;
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
-
-    .container {
-      max-width: 700px;
-      margin: 30px auto;
-      padding: 20px;
-    }
-
-    .notification {
-      background: #222;
-      padding: 15px 20px;
-      border-radius: 12px;
-      margin-bottom: 15px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    #mysidenav {
+      position: fixed;
+      top: 60px;
+      right: 0;
+      width: 70px;
+      height: 100%;
+      background-color: #111;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 15px;
-      cursor: pointer;
+      padding-top: 20px;
+      z-index: 999;
     }
 
-    .notification i {
+    #mysidenav a {
+      margin: 15px 0;
+      font-size: 22px;
       color: #f1c40f;
-      font-size: 20px;
-    }
-
-    .notification p {
-      flex-grow: 1;
-      font-size: 16px;
-      color: #fff;
-    }
-
-    .no-notifications {
+      background: #222;
+      border-radius: 12px;
+      padding: 14px;
+      width: 48px;
+      height: 48px;
       text-align: center;
-      font-size: 18px;
-      color: #ddd;
-      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease;
     }
 
-    @media (max-width: 600px) {
-      .notification p {
-        font-size: 14px;
-      }
+    #mysidenav a:hover {
+      background-color: #f1c40f;
+      color: #111;
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .login-container {
+      max-width: 400px;
+      margin: 80px auto;
+      padding: 30px;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: gold;
+    }
+
+    .login-container input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      background: #fff;
+      color: #000;
+    }
+
+    .login-container input[type="submit"] {
+      background-color: gold;
+      color: #111;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .login-container input[type="submit"]:hover {
+      background-color: #f1c40f;
+    }
+
+    .login-container p {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .login-container a {
+      color: #f1c40f;
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-
-  <!-- NAVBAR -->
   <div class="navbar">
-    <div class="logo">🔔 Notifications</div>
+    <div class="logo">🎰 Spin Game Master</div>
   </div>
 
-  <!-- Side Menu -->
   <div id="mysidenav">
-    <a href="log in page.html" id="about" title="Profile"><i class="fa fa-user"></i></a>
-    <a href="Withdraw page .html" id="blog" title="Withdraw"><i class="fa fa-bank"></i></a>
-    <a href="index.html" id="project" title="Chat"><i class="fa fa-rotate"></i></a>
-    <a href="https://wa.me/?text=Hello%2C%20check%20this%20out!" target="_blank" id="contact" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <a href="index.html" title="Profile"><i class="fa fa-rotate"></i></a>
+    <a href="Withdraw page .html" title="Withdraw"><i class="fa fa-bank"></i></a>
+    <a href="Notification .html" title="Chat"><i class="fa fa-bell"></i></a>
+    <a href="https://wa.me/?text=Hello%2C%20check%20this%20out!" target="_blank" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
   </div>
 
-  <!-- MAIN CONTAINER -->
-  <div class="container">
-
-    <!-- Example Notification Cards -->
-    <div class="notification">
-      <i class="fa fa-coins"></i>
-      <p>You earned 5 coins from your last spin!</p>
-    </div>
-
-    <div class="notification">
-      <i class="fa fa-gift"></i>
-      <p>Daily reward is available. Don't forget to claim it!</p>
-    </div>
-
-    <div class="notification">
-      <i class="fa fa-bolt"></i>
-      <p>New spin game challenge added. Try it now!</p>
-    </div>
-
-    <!-- If no notifications -->
-    <!--
-    <div class="no-notifications">
-      📭 You have no notifications at this time.
-    </div>
-    -->
-
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="text" id="fullname" placeholder="Enter Your Full Name" required>
+      <input type="password" id="password" placeholder="Password (Min 6 characters)" required>
+      <input type="submit" value="Login">
+    </form>
+    
+    <p>Don't have an account? <a href="#">Sign up</a></p>
+    <div class="message" id="loginMessage"></div>
   </div>
-        <script >
-  // Function to remove a notification when clicked
-  document.querySelectorAll('.notification').forEach(notification => {
-    notification.addEventListener('click', function () {
-      this.remove(); // Remove the clicked notification
 
-      // If there are no more notifications, show "no notifications" message
-      if (document.querySelectorAll('.notification').length === 0) {
-        const container = document.querySelector('.container');
-        const noNotif = document.createElement('div');
-        noNotif.className = 'no-notifications';
-        noNotif.innerHTML = '📭 You have no notifications at this time.';
-        container.appendChild(noNotif);
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const fullname = document.getElementById("fullname").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const message = document.getElementById("loginMessage");
+
+      if (!username || !fullname) {
+        message.style.color = "salmon";
+        message.textContent = "Please enter both username and full name.";
+        return;
       }
-    });
-  });
 
-</script>
+      if (password.length < 6) {
+        message.style.color = "salmon";
+        message.textContent = "Password must be at least 6 characters.";
+        return;
+      }
+
+      // ✅ Google Apps Script URL
+      const scriptURL = "https://script.google.com/macros/s/AKfycbytKIbA4xK-a4dvtHhbe_FtPK_J2C8zbIpy2Th8ZaHKD-eBbjBfpZoqqaX5GtFB64TohQ/exec";
+
+      // ✅ Send data to Google Sheet
+      fetch(scriptURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: username,
+          fullname: fullname,
+          password: password
+        })
+      })
+      .then(response => response.text())
+      .then(result => {
+        console.log("Success:", result);
+
+        // Save to local storage (optional)
+        localStorage.setItem("username", username);
+        localStorage.setItem("fullname", fullname);
+
+        message.style.color = "lightgreen";
+        message.textContent = "Login successful! Redirecting...";
+
+        setTimeout(() => {
+          window.location.href = "Profile.html";
+        }, 1500);
+      })
+      .catch(error => {
+        console.error("Error!", error.message);
+        message.style.color = "red";
+        message.textContent = "Login failed. Please try again.";
+      });
+    });
+  </script>
 </body>
 </html>
