@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="title.jpg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* (Keep your original CSS unchanged) */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -128,6 +128,73 @@
       margin-top: 10px;
       font-weight: bold;
     }
+
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+      .navbar {
+        height: 50px;
+      }
+
+      .navbar .logo {
+        font-size: 18px;
+      }
+
+      #mysidenav {
+        width: 60px;
+        top: 50px;
+      }
+
+      #mysidenav a {
+        font-size: 18px;
+        padding: 12px;
+        width: 44px;
+        height: 44px;
+      }
+
+      .login-container {
+        width: 90%;
+        margin: 70px auto;
+        padding: 20px;
+      }
+
+      .login-container h2 {
+        font-size: 22px;
+      }
+
+      .login-container input {
+        padding: 10px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .navbar .logo {
+        font-size: 16px;
+      }
+
+      #mysidenav {
+        width: 50px;
+      }
+
+      #mysidenav a {
+        font-size: 16px;
+        padding: 10px;
+        width: 40px;
+        height: 40px;
+      }
+
+      .login-container {
+        padding: 15px;
+        margin: 60px auto;
+      }
+
+      .login-container h2 {
+        font-size: 20px;
+      }
+
+      .login-container input[type="submit"] {
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -150,45 +217,41 @@
       <input type="password" id="password" placeholder="Password (Min 6 characters)" required>
       <input type="submit" value="Login">
     </form>
-    
     <p>Don't have an account? <a href="#">Sign up</a></p>
     <div class="message" id="loginMessage"></div>
   </div>
 
-  
-   <script>
-  document.getElementById("loginForm").addEventListener("submit", function(event) {
-    event.preventDefault();
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
 
-    const username = document.getElementById("username").value.trim();
-    const fullname = document.getElementById("fullname").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const message = document.getElementById("loginMessage");
+      const username = document.getElementById("username").value.trim();
+      const fullname = document.getElementById("fullname").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const message = document.getElementById("loginMessage");
 
-    if (!username || !fullname) {
-      message.style.color = "salmon";
-      message.textContent = "Please enter both username and full name.";
-      return;
-    }
+      if (!username || !fullname) {
+        message.style.color = "salmon";
+        message.textContent = "Please enter both username and full name.";
+        return;
+      }
 
-    if (password.length < 6) {
-      message.style.color = "salmon";
-      message.textContent = "Password must be at least 6 characters.";
-      return;
-    }
+      if (password.length < 6) {
+        message.style.color = "salmon";
+        message.textContent = "Password must be at least 6 characters.";
+        return;
+      }
 
-    // Save data to localStorage
-    localStorage.setItem("username", username);
-    localStorage.setItem("fullname", fullname);
+      localStorage.setItem("username", username);
+      localStorage.setItem("fullname", fullname);
 
-    message.style.color = "lightgreen";
-    message.textContent = "Login successful! Redirecting...";
+      message.style.color = "lightgreen";
+      message.textContent = "Login successful! Redirecting...";
 
-    setTimeout(() => {
-      window.location.href = "Profile.html";
-    }, 1500);
-  });
-</script>
-
+      setTimeout(() => {
+        window.location.href = "Profile.html";
+      }, 1500);
+    });
+  </script>
 </body>
 </html>
