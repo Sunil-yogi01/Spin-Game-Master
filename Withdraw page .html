@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon"  href="title.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="title.jpg">
   <title>Withdraw Coins - Spin Game Master</title>
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
     * {
       box-sizing: border-box;
@@ -19,7 +20,6 @@
       background: linear-gradient(135deg, #1d2b64, #f8cdda);
       color: #fff;
       padding-top: 60px;
-      background-attachment: fixed;
     }
 
     .navbar {
@@ -31,7 +31,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
       z-index: 1000;
     }
 
@@ -39,7 +38,6 @@
       font-size: 22px;
       font-weight: bold;
       color: gold;
-      text-align: center;
     }
 
     #mysidenav {
@@ -47,17 +45,16 @@
       top: 60px;
       right: 0;
       width: 70px;
-      height: 100%;
       background-color: #111;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding-top: 20px;
-      z-index: 999;
+      height: 100vh;
     }
 
     #mysidenav a {
-      margin: 15px 0;
+      margin: 12px 0;
       font-size: 22px;
       color: #f1c40f;
       background: #222;
@@ -65,7 +62,6 @@
       padding: 14px;
       width: 48px;
       height: 48px;
-      text-align: center;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -76,7 +72,7 @@
       background-color: #f1c40f;
       color: #111;
       transform: scale(1.1);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
     .container {
@@ -106,7 +102,8 @@
       font-weight: bold;
     }
 
-    input[type="number"], input[type="text"] {
+    input[type="number"],
+    input[type="text"] {
       width: 100%;
       padding: 10px;
       margin-bottom: 15px;
@@ -118,7 +115,7 @@
     .btn {
       display: block;
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       background: linear-gradient(to right, #f9d423, #ff4e50);
       border: none;
       border-radius: 30px;
@@ -133,28 +130,92 @@
       background: linear-gradient(to right, #ff4e50, #f9d423);
     }
 
-    @media (max-width: 600px) {
+    /* ================= MEDIA QUERIES ================= */
+    @media (max-width: 768px) {
       .container {
         width: 90%;
+        margin: 100px auto;
+        padding: 15px;
+      }
+
+      .navbar .logo {
+        font-size: 18px;
+      }
+
+      #mysidenav {
+        width: 60px;
       }
 
       #mysidenav a {
-        font-size: 20px;
-        padding: 12px;
-        width: 44px;
-        height: 44px;
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+        padding: 10px;
+      }
+
+      .balance {
+        font-size: 18px;
+      }
+
+      .btn {
+        font-size: 16px;
+        padding: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar {
+        height: 50px;
+      }
+
+      .navbar .logo {
+        font-size: 16px;
+      }
+
+      #mysidenav {
+        top: 50px;
+        width: 50px;
+      }
+
+      #mysidenav a {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+        padding: 8px;
+      }
+
+      .container {
+        margin-top: 90px;
+        padding: 10px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+
+      label {
+        font-size: 14px;
+      }
+
+      input[type="number"],
+      input[type="text"] {
+        font-size: 14px;
+        padding: 8px;
+      }
+
+      .btn {
+        font-size: 14px;
+        padding: 10px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
   <div class="navbar">
     <div class="logo">Withdraw Coins</div>
   </div>
 
-  <!-- Sidebar -->
   <div id="mysidenav">
     <a href="log in page.html" title="Profile"><i class="fa fa-user"></i></a>
     <a href="index.html" title="Spin Game"><i class="fa fa-rotate"></i></a>
@@ -162,7 +223,6 @@
     <a href="https://wa.me/?text=Hello%2C%20check%20this%20out!" target="_blank" title="Share"><i class="fab fa-whatsapp"></i></a>
   </div>
 
-  <!-- Withdraw Section -->
   <div class="container">
     <h2>Withdraw Your Coins</h2>
     <div class="balance" id="current-balance">Current Coins: 0</div>
@@ -200,7 +260,7 @@
     let gameState = loadState();
     document.getElementById("current-balance").textContent = `Current Coins: ${gameState.coins}`;
 
-    document.getElementById("withdraw-form").addEventListener("submit", function(e) {
+    document.getElementById("withdraw-form").addEventListener("submit", function (e) {
       e.preventDefault();
 
       const amount = parseInt(document.getElementById("amount").value);
@@ -223,5 +283,6 @@
       document.getElementById("withdraw-form").reset();
     });
   </script>
+
 </body>
 </html>
