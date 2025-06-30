@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="title.jpg" />
-  <title>Withdraw Coins - Spin Game Master</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
+  <link rel="icon" href="title.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    /* (Keep your original CSS unchanged) */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -20,6 +17,8 @@
       background: linear-gradient(135deg, #1d2b64, #f8cdda);
       color: #fff;
       padding-top: 60px;
+      overflow-x: hidden;
+      background-attachment: fixed;
     }
 
     .navbar {
@@ -31,6 +30,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
       z-index: 1000;
     }
 
@@ -45,16 +45,17 @@
       top: 60px;
       right: 0;
       width: 70px;
+      height: 100%;
       background-color: #111;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding-top: 20px;
-      height: 100vh;
+      z-index: 999;
     }
 
     #mysidenav a {
-      margin: 12px 0;
+      margin: 15px 0;
       font-size: 22px;
       color: #f1c40f;
       background: #222;
@@ -62,6 +63,7 @@
       padding: 14px;
       width: 48px;
       height: 48px;
+      text-align: center;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -75,135 +77,118 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
-    .container {
+    .login-container {
       max-width: 400px;
       margin: 80px auto;
-      padding: 20px;
-      background-color: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      background: rgba(0, 0, 0, 0.6);
       border-radius: 15px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     }
 
-    h2 {
+    .login-container h2 {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       color: gold;
     }
 
-    .balance {
-      text-align: center;
-      font-size: 20px;
-      margin-bottom: 15px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: bold;
-    }
-
-    input[type="number"],
-    input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-    }
-
-    .btn {
-      display: block;
+    .login-container input {
       width: 100%;
       padding: 12px;
-      background: linear-gradient(to right, #f9d423, #ff4e50);
+      margin: 10px 0;
       border: none;
-      border-radius: 30px;
-      font-size: 18px;
+      border-radius: 8px;
+      background: #fff;
+      color: #000;
+    }
+
+    .login-container input[type="submit"] {
+      background-color: gold;
+      color: #111;
       font-weight: bold;
-      color: #fff;
       cursor: pointer;
       transition: background 0.3s;
     }
 
-    .btn:hover {
-      background: linear-gradient(to right, #ff4e50, #f9d423);
+    .login-container input[type="submit"]:hover {
+      background-color: #f1c40f;
+    }
+
+    .login-container p {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .login-container a {
+      color: #f1c40f;
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-
   <div class="navbar">
-    <div class="logo">Withdraw Coins</div>
+    <div class="logo">🎰 Spin Game Master</div>
   </div>
 
   <div id="mysidenav">
-    <a href="log in page.html" title="Profile"><i class="fa fa-user"></i></a>
-    <a href="index.html" title="Spin Game"><i class="fa fa-rotate"></i></a>
+    <a href="index.html" title="Profile"><i class="fa fa-rotate"></i></a>
+    <a href="Withdraw page .html" title="Withdraw"><i class="fa fa-bank"></i></a>
     <a href="Notification .html" title="Chat"><i class="fa fa-bell"></i></a>
-    <a href="https://wa.me/?text=Hello%2C%20check%20this%20out!" target="_blank" title="Share"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://wa.me/?text=Hello%2C%20check%20this%20out!" target="_blank" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
   </div>
 
-  <div class="container">
-    <h2>Withdraw Your Coins</h2>
-    <div class="balance" id="current-balance">Current Coins: 0</div>
-
-    <form id="withdraw-form">
-      <label for="amount">Withdraw Amount:</label>
-      <input type="number" id="amount" min="1" required />
-
-      <label for="upi">Enter UPI ID:</label>
-      <input type="text" id="upi" placeholder="example@bank" required />
-
-      <button type="submit" class="btn">Withdraw</button>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="text" id="fullname" placeholder="Enter Your Full Name" required>
+      <input type="password" id="password" placeholder="Password (Min 6 characters)" required>
+      <input type="submit" value="Login">
     </form>
+    
+    <p>Don't have an account? <a href="#">Sign up</a></p>
+    <div class="message" id="loginMessage"></div>
   </div>
 
-  <script>
-    function getTodayKey() {
-      const today = new Date();
-      return `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
+  
+   <script>
+  document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const username = document.getElementById("username").value.trim();
+    const fullname = document.getElementById("fullname").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const message = document.getElementById("loginMessage");
+
+    if (!username || !fullname) {
+      message.style.color = "salmon";
+      message.textContent = "Please enter both username and full name.";
+      return;
     }
 
-    function loadState() {
-      const key = getTodayKey();
-      const saved = JSON.parse(localStorage.getItem("spinGame")) || {};
-      if (saved.date !== key) {
-        return { coins: 0, total: 0, spinsLeft: 3, date: key };
-      }
-      return saved;
+    if (password.length < 6) {
+      message.style.color = "salmon";
+      message.textContent = "Password must be at least 6 characters.";
+      return;
     }
 
-    function saveState(state) {
-      localStorage.setItem("spinGame", JSON.stringify(state));
-    }
+    // Save data to localStorage
+    localStorage.setItem("username", username);
+    localStorage.setItem("fullname", fullname);
 
-    let gameState = loadState();
-    document.getElementById("current-balance").textContent = `Current Coins: ${gameState.coins}`;
+    message.style.color = "lightgreen";
+    message.textContent = "Login successful! Redirecting...";
 
-    document.getElementById("withdraw-form").addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const amount = parseInt(document.getElementById("amount").value);
-      const upi = document.getElementById("upi").value.trim();
-
-      if (amount > gameState.coins) {
-        alert("❌ Not enough coins to withdraw.");
-        return;
-      }
-
-      if (!upi.includes("@") || upi.length < 6) {
-        alert("⚠️ Please enter a valid UPI ID.");
-        return;
-      }
-
-      gameState.coins -= amount;
-      saveState(gameState);
-      document.getElementById("current-balance").textContent = `Current Coins: ${gameState.coins}`;
-      alert(`✅ ${amount} coins withdrawn to ${upi}!`);
-      document.getElementById("withdraw-form").reset();
-    });
-  </script>
+    setTimeout(() => {
+      window.location.href = "Profile.html";
+    }, 1500);
+  });
+</script>
 
 </body>
 </html>
