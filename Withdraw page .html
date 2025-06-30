@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="title.jpg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="title.jpg" />
   <title>Withdraw Coins - Spin Game Master</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
     * {
@@ -79,9 +79,9 @@
       max-width: 400px;
       margin: 80px auto;
       padding: 20px;
-      background-color: rgba(0,0,0,0.6);
+      background-color: rgba(0, 0, 0, 0.6);
       border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     }
 
     h2 {
@@ -129,85 +129,6 @@
     .btn:hover {
       background: linear-gradient(to right, #ff4e50, #f9d423);
     }
-
-    /* ================= MEDIA QUERIES ================= */
-    @media (max-width: 768px) {
-      .container {
-        width: 90%;
-        margin: 100px auto;
-        padding: 15px;
-      }
-
-      .navbar .logo {
-        font-size: 18px;
-      }
-
-      #mysidenav {
-        width: 60px;
-      }
-
-      #mysidenav a {
-        width: 42px;
-        height: 42px;
-        font-size: 18px;
-        padding: 10px;
-      }
-
-      .balance {
-        font-size: 18px;
-      }
-
-      .btn {
-        font-size: 16px;
-        padding: 10px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .navbar {
-        height: 50px;
-      }
-
-      .navbar .logo {
-        font-size: 16px;
-      }
-
-      #mysidenav {
-        top: 50px;
-        width: 50px;
-      }
-
-      #mysidenav a {
-        width: 36px;
-        height: 36px;
-        font-size: 16px;
-        padding: 8px;
-      }
-
-      .container {
-        margin-top: 90px;
-        padding: 10px;
-      }
-
-      h2 {
-        font-size: 18px;
-      }
-
-      label {
-        font-size: 14px;
-      }
-
-      input[type="number"],
-      input[type="text"] {
-        font-size: 14px;
-        padding: 8px;
-      }
-
-      .btn {
-        font-size: 14px;
-        padding: 10px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -229,10 +150,10 @@
 
     <form id="withdraw-form">
       <label for="amount">Withdraw Amount:</label>
-      <input type="number" id="amount" min="1" required>
+      <input type="number" id="amount" min="1" required />
 
       <label for="upi">Enter UPI ID:</label>
-      <input type="text" id="upi" placeholder="example@bank" required>
+      <input type="text" id="upi" placeholder="example@bank" required />
 
       <button type="submit" class="btn">Withdraw</button>
     </form>
