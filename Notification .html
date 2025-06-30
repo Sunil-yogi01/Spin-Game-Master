@@ -2,18 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Notifications - Spin Game Master</title>
-  <link rel="icon" href="title.jpg">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+  <link rel="icon"  href="title.jpg">
+  <title>Notifications - Spin Game Master</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
-      text-decoration: none;
+        text-decoration: none;
     }
 
     body {
@@ -43,42 +42,48 @@
       color: gold;
     }
 
+
+     /* Sidebar icons */
     /* Sidebar */
-    #mysidenav {
-      position: fixed;
-      top: 60px;
-      right: 0;
-      width: 70px;
-      height: 100%;
-      background-color: #111;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 20px;
-      z-index: 999;
-    }
+#mysidenav {
+  position: fixed;
+  top: 60px;
+  right: 0; /* moved from left to right */
+  width: 70px;
+  height: 100%;
+  background-color: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  z-index: 999;
+}
 
-    #mysidenav a {
-      margin: 15px 0;
-      font-size: 22px;
-      color: #f1c40f;
-      background: #222;
-      border-radius: 12px;
-      padding: 14px;
-      width: 48px;
-      height: 48px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: all 0.3s ease;
-    }
 
-    #mysidenav a:hover {
-      background-color: #f1c40f;
-      color: #111;
-      transform: scale(1.1);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
+#mysidenav a {
+  margin: 15px 0;
+  font-size: 22px;
+  color: #f1c40f;
+  background: #222;
+  border-radius: 12px;
+  padding: 14px;
+  width: 48px;
+  height: 48px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+#mysidenav a:hover {
+  background-color: #f1c40f;
+  color: #111;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
 
     .container {
       max-width: 700px;
@@ -116,73 +121,9 @@
       margin-top: 40px;
     }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .navbar {
-        height: 50px;
-      }
-
-      .navbar .logo {
-        font-size: 18px;
-      }
-
-      #mysidenav {
-        width: 60px;
-        top: 50px;
-      }
-
-      #mysidenav a {
-        font-size: 20px;
-        padding: 12px;
-        width: 44px;
-        height: 44px;
-      }
-
-      .container {
-        margin: 20px 10px;
-        padding: 15px;
-      }
-
-      .notification {
-        padding: 12px 16px;
-        gap: 10px;
-      }
-
-      .notification p {
-        font-size: 15px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .navbar .logo {
-        font-size: 16px;
-      }
-
-      #mysidenav {
-        width: 50px;
-      }
-
-      #mysidenav a {
-        font-size: 18px;
-        padding: 10px;
-        width: 40px;
-        height: 40px;
-      }
-
-      .container {
-        padding: 10px;
-      }
-
-      .notification {
-        padding: 10px 14px;
-      }
-
+    @media (max-width: 600px) {
       .notification p {
         font-size: 14px;
-      }
-
-      .no-notifications {
-        font-size: 16px;
       }
     }
   </style>
@@ -196,16 +137,16 @@
 
   <!-- Side Menu -->
   <div id="mysidenav">
-    <a href="log in page.html" title="Profile"><i class="fa fa-user"></i></a>
-    <a href="Withdraw page .html" title="Withdraw"><i class="fa fa-bank"></i></a>
-    <a href="index.html" title="Home"><i class="fa fa-rotate"></i></a>
-    <a href="https://wa.me/?text=Hello%2C%20check%20this%20out!" target="_blank" title="Share"><i class="fab fa-whatsapp"></i></a>
+    <a href="log in page.html" id="about" title="Profile"><i class="fa fa-user"></i></a>
+    <a href="Withdraw page .html" id="blog" title="Withdraw"><i class="fa fa-bank"></i></a>
+    <a href="index.html" id="project" title="Chat"><i class="fa fa-rotate"></i></a>
+    <a href="https://wa.me/?text=Hello%2C%20check%20this%20out!" target="_blank" id="contact" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
   </div>
 
   <!-- MAIN CONTAINER -->
   <div class="container">
 
-    <!-- Notification Cards -->
+    <!-- Example Notification Cards -->
     <div class="notification">
       <i class="fa fa-coins"></i>
       <p>You earned 5 coins from your last spin!</p>
@@ -221,7 +162,7 @@
       <p>New spin game challenge added. Try it now!</p>
     </div>
 
-    <!-- Example for no notifications -->
+    <!-- If no notifications -->
     <!--
     <div class="no-notifications">
       📭 You have no notifications at this time.
@@ -229,22 +170,23 @@
     -->
 
   </div>
+        <script >
+  // Function to remove a notification when clicked
+  document.querySelectorAll('.notification').forEach(notification => {
+    notification.addEventListener('click', function () {
+      this.remove(); // Remove the clicked notification
 
-  <script>
-    // Click to remove notification
-    document.querySelectorAll('.notification').forEach(notification => {
-      notification.addEventListener('click', function () {
-        this.remove();
-
-        if (document.querySelectorAll('.notification').length === 0) {
-          const container = document.querySelector('.container');
-          const noNotif = document.createElement('div');
-          noNotif.className = 'no-notifications';
-          noNotif.innerHTML = '📭 You have no notifications at this time.';
-          container.appendChild(noNotif);
-        }
-      });
+      // If there are no more notifications, show "no notifications" message
+      if (document.querySelectorAll('.notification').length === 0) {
+        const container = document.querySelector('.container');
+        const noNotif = document.createElement('div');
+        noNotif.className = 'no-notifications';
+        noNotif.innerHTML = '📭 You have no notifications at this time.';
+        container.appendChild(noNotif);
+      }
     });
-  </script>
+  });
+
+</script>
 </body>
 </html>
