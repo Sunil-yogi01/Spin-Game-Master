@@ -12,14 +12,14 @@
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #1d2b64, #f8cdda);
       color: #fff;
-      padding-top: 60px;
+      padding-top: 10px;
       overflow-x: hidden;
       background-attachment: fixed;
     }
 
     .navbar {
       position: fixed;
-      top: 0; width: 100%; height: 60px;
+      top: 0; width: 100%; height: 38px;
       background-color: #111;
       display: flex; justify-content: center; align-items: center;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
@@ -32,8 +32,8 @@
 
     #mysidenav {
       position: fixed;
-      top: 60px; right: 0;
-      width: 70px; height: 100%;
+      top: 38px; right: 0;
+      width: 61px; height: 100%;
       background-color: #111;
       display: flex; flex-direction: column;
       align-items: center;
@@ -114,7 +114,17 @@
       font-weight: bold;
       margin-top: 10px;
       text-shadow: 1px 1px 3px #000;
-    }
+    }.t24{
+     font-size: 24px;
+    color: white;
+    margin: 0px 0px 0px -148px;
+    font-style: italic;
+}
+.t25{
+      font-size: 22px;
+    margin: -31px 0px -71px 288px;
+    color: gold;
+}
 
     /* ✅ Mobile Responsive Adjustments */
     @media (max-width: 600px) {
@@ -158,7 +168,7 @@
   </style>
 </head>
 <body>
-  <div class="navbar"><div class="logo">🎰 Spin Game Master</div></div>
+  <div class="navbar"><div class="logo">Spin Game Master</div></div>
 
   <div id="mysidenav">
     <a href="log in page.html" title="Profile"><i class="fa fa-user"></i></a>
@@ -177,7 +187,7 @@
 
   <div id="spins-left">Spins Left Today: 3</div>
   <div id="coins">Today's Coins: 0</div>
-  <div id="result"></div>
+  <div id="result"> <div class="t24">Created By:-<h1 class="t25">SUNIL YOGI</h1></div></div>
 
   <script>
     const wheel = document.getElementById("wheel");
