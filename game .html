@@ -1,293 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Spin Game Master</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Spin Game Master</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="title.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; text-decoration: none; }
 
-	<style> 
-		* {
-			box-sizing: border-box;
-			margin: 0;
-			padding: 0; 
-			text-decoration: none;
-		}
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1d2b64, #f8cdda);
+      color: #fff;
+      padding-top: 10px;
+      overflow-x: hidden;
+      background-attachment: fixed;
+    }
 
-	 body {
-	font-family: 'Segoe UI', sans-serif;
-	background: linear-gradient(135deg, #1d2b64, #f8cdda);
-	color: #fff;
-	padding-top: 49px;
-	overflow-x: hidden; 
+    .navbar {
+      position: fixed;
+      top: 0; width: 100%; height: 38px;
+      background-color: #111;
+      display: flex; justify-content: center; align-items: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      font-size: 22px; font-weight: bold; color: gold; text-align: center;
+    }
+
+    #mysidenav {
+      position: fixed;
+      top: 38px; right: 0;
+      width: 61px; height: 100%;
+      background-color: #111;
+      display: flex; flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      z-index: 999;
+    }
+
+    #mysidenav a {
+      margin: 15px 0;
+      font-size: 22px; color: #f1c40f;
+      background: #222;
+      border-radius: 12px;
+      padding: 14px;
+      width: 48px; height: 48px;
+      text-align: center;
+      display: flex; justify-content: center; align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    #mysidenav a:hover {
+      background-color: #f1c40f; color: #111;
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .wheel-container {
+      position: relative;
+      width: 320px; height: 320px;
+      margin: 30px auto;
+      border-radius: 50%; overflow: hidden;
+      border: 12px solid #fff;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+      background-color: #222;
+    }
+
+    .wheel {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: conic-gradient(
+        #f44336 0% 12.5%, #e91e63 12.5% 25%, #9c27b0 25% 37.5%, #673ab7 37.5% 50%,
+        #3f51b5 50% 62.5%, #2196f3 62.5% 75%, #4caf50 75% 87.5%, #ff9800 87.5% 100%
+      );
+      transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    .pointer {
+      position: absolute; top: 261px; left: 50%;
+      transform: translateX(-50%);
+      width: 0; height: 0;
+      border-left: 18px solid transparent;
+      border-right: 18px solid transparent;
+      border-bottom: 36px solid #f1c40f;
+    }
+
+    .btn {
+      display: block;
+      margin: 20px auto 10px;
+      padding: 10px 30px;
+      background: linear-gradient(to right, #f9d423, #ff4e50);
+      border: none; border-radius: 30px;
+      font-size: 18px; font-weight: bold;
+      color: #fff; cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: linear-gradient(to right, #ff4e50, #f9d423);
+    }
+
+    .btn:disabled {
+      background: #888; cursor: not-allowed;
+    }
+
+    #result, #coins, #spins-left {
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 10px;
+      text-shadow: 1px 1px 3px #000;
+    }.t24{
+     font-size: 24px;
+    color: white;
+    margin: 0px 0px 0px -148px;
+    font-style: italic;
+}
+.t25{
+      font-size: 22px;
+    margin: -31px 0px -71px 288px;
+    color: gold;
 }
 
-		/* Navbar */
-	 .navbar {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	height: 60px;
-	background-color: #111;
-	display: flex;
-	justify-content: center; /* center the content horizontally */
-	align-items: center;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-	z-index: 1000;
-}
+    /* ✅ Mobile Responsive Adjustments */
+    @media (max-width: 600px) {
+      .wheel-container {
+        width: 90vw;
+        height: 90vw;
+      }
 
-.navbar .logo {
-	font-size: 22px;
-	font-weight: bold;
-	color: gold;
-	text-align: center;
-}
+      #mysidenav {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px;
+        top: auto;
+        bottom: 0;
+        left: 0;
+      }
 
+      #mysidenav a {
+        margin: 0;
+        width: 44px;
+        height: 44px;
+        padding: 10px;
+        font-size: 18px;
+      }
 
-		/* Sidebar icons */
-		/* Sidebar */
-#mysidenav {
-	position: fixed;
-	top: 60px;
-	right: 0; /* moved from left to right */
-	width: 70px;
-	height: 100%;
-	background-color: #111;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding-top: 20px;
-	z-index: 999;
-}
+      .navbar .logo {
+        font-size: 18px;
+      }
 
+      .btn {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
 
-#mysidenav a {
-	margin: 15px 0;
-	font-size: 22px;
-	color: #f1c40f;
-	background: #222;
-	border-radius: 12px;
-	padding: 14px;
-	width: 48px;
-	height: 48px;
-	text-align: center;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	transition: all 0.3s ease;
-	font-family: 'Segoe UI', sans-serif;
-}
-
-#mysidenav a:hover {
-	background-color: #f1c40f;
-	color: #111;
-	transform: scale(1.1);
-	box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
-
-		/* Wheel Game Styles */
-		.wheel-container {
-			position: relative;
-			width: 320px;
-			height: 320px;
-			margin: 30px auto;
-			border-radius: 50%;
-			overflow: hidden;
-			border: 12px solid #fff;
-			box-shadow: 0 0 30px rgba(0,0,0,0.5);
-			background-color: #222;
-		}
-
-		.wheel {
-			width: 100%;
-			height: 100%;
-			border-radius: 50%;
-			background: conic-gradient(
-				#f44336 0% 12.5%,
-				#e91e63 12.5% 25%,
-				#9c27b0 25% 37.5%,
-				#673ab7 37.5% 50%,
-				#3f51b5 50% 62.5%,
-				#2196f3 62.5% 75%,
-				#4caf50 75% 87.5%,
-				#ff9800 87.5% 100%
-			);
-			transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1);
-		}
-
-		.pointer {
-			position: absolute;
-			top: 261px;
-			left: 50%;
-			transform: translateX(-50%);
-			width: 0;
-			height: 0;
-			border-left: 18px solid transparent;
-			border-right: 18px solid transparent;
-			border-bottom: 36px solid #f1c40f;
-		}
-
-		.btn {
-			display: block;
-			margin: 20px auto 10px;
-			padding: 9px 30px;
-			background: linear-gradient(to right, #f9d423, #ff4e50);
-			border: none;
-			border-radius: 30px;
-			font-size: 18px;
-			font-weight: bold;
-			color: #fff;
-			cursor: pointer;
-			box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-			transition: background 0.3s;
-		}
-
-		.btn:hover {
-			background: linear-gradient(to right, #ff4e50, #f9d423);
-		}
-
-		.btn:disabled {
-			background: #888;
-			cursor: not-allowed;
-		}
-
-		#result, #coins, #spins-left {
-			text-align: center;
-			font-size: 20px;
-			font-weight: bold;
-			margin-top: 10px;
-			text-shadow: 1px 1px 3px #000;
-		}
-
-		@media (max-width: 600px) {
-			.wheel-container {
-				width: 90%;
-				height: auto;
-			}
-
-			#mysidenav a {
-				font-size: 20px;
-				padding: 12px;
-				width: 44px;
-				height: 44px;
-			}
-		}
-	</style>
+      #result, #coins, #spins-left {
+        font-size: 18px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="navbar"><div class="logo">Spin Game Master</div></div>
 
-	<!-- NAVBAR -->
-	<div class="navbar">
-		<div class="logo">🎰 Spin Game Master</div>
-	</div>
+  <div id="mysidenav">
+    <a href="log in page.html" title="Profile"><i class="fa fa-user"></i></a>
+    <a href="Withdraw page .html" title="Withdraw"><i class="fa fa-bank"></i></a>
+    <a href="Notification .html" title="Chat"><i class="fa fa-bell"></i></a>
+    <a href="https://wa.me/?text=Hello%2C%20check%20this%20out!" target="_blank" title="Share"><i class="fab fa-whatsapp"></i></a>
+  </div>
 
-	<!-- Side Menu -->
-	<div id="mysidenav">
-		<a href="log in page.html" id="about" title="Profile"><i class="fa fa-user"></i></a>
-		<a href="Withdraw page .html" id="blog" title="Withdraw"><i class="fa fa-bank"></i></a>
-		<a href="Notification .html" id="project" title="Chat"><i class="fa fa-bell"></i></a>
-		<a href="https://wa.me/?text=Hello%2C%20check%20this%20out!" target="_blank" id="contact" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
-	</div>
+  <div class="wheel-container">
+    <div class="pointer"></div>
+    <div class="wheel" id="wheel"></div>
+  </div>
 
-	<!-- SPIN GAME UI -->
-	<div class="wheel-container">
-		<div class="pointer"></div>
-		<div class="wheel" id="wheel"></div>
-	</div>
+  <button class="btn" id="spin-btn">🎯 Spin</button>
+  <button class="btn" id="calculate-btn">🧮 View Total Coins</button>
 
-	<button class="btn" id="spin-btn">🎯 Spin</button>
-	<button class="btn" id="calculate-btn">🧮 View Total Coins</button>
+  <div id="spins-left">Spins Left Today: 3</div>
+  <div id="coins">Today's Coins: 0</div>
+  <div id="result"> <div class="t24">Created By:-<h1 class="t25">SUNIL YOGI</h1></div></div>
 
-	<div id="spins-left">Spins Left Today: 3</div>
-	<div id="coins">Current Coins: 0</div>
-	<div id="result"></div> 
+  <script>
+    const wheel = document.getElementById("wheel");
+    const spinBtn = document.getElementById("spin-btn");
+    const calcBtn = document.getElementById("calculate-btn");
+    const result = document.getElementById("result");
+    const coinsDisplay = document.getElementById("coins");
+    const spinsLeftDisplay = document.getElementById("spins-left");
 
-	<!-- SCRIPT -->
-	<script>
-		const wheel = document.getElementById("wheel");
-		const spinBtn = document.getElementById("spin-btn");
-		const calcBtn = document.getElementById("calculate-btn");
-		const result = document.getElementById("result");
-		const coinsDisplay = document.getElementById("coins");
-		const spinsLeftDisplay = document.getElementById("spins-left");
+    const spinSound = new Audio("spin.mp3");
+    const winSound = new Audio("win.mp3");
+    const errorSound = new Audio("error.mp3");
 
-		const segments = [
-			{ label: "1 Coin", value: 1 },
-			{ label: "2 Coins", value: 2 },
-			{ label: "3 Coins", value: 3 },
-			{ label: "5 Coins", value: 5 },
-			{ label: "0 Coins", value: 0 },
-			{ label: "4 Coins", value: 4 },
-			{ label: "6 Coins", value: 6 },
-			{ label: "10 Coins", value: 10 }
-		];
+    const segments = [
+      { label: "1 Coin", value: 1 },
+      { label: "2 Coins", value: 2 },
+      { label: "3 Coins", value: 3 },
+      { label: "5 Coins", value: 5 },
+      { label: "0 Coins", value: 0 },
+      { label: "4 Coins", value: 4 },
+      { label: "6 Coins", value: 6 },
+      { label: "10 Coins", value: 10 }
+    ];
 
-		let deg = 0;
+    let deg = 0;
 
-		function getTodayKey() {
-			const today = new Date();
-			return `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
-		}
+    function getTodayKey() {
+      const today = new Date();
+      return `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
+    }
 
-		function loadState() {
-			const key = getTodayKey();
-			const saved = JSON.parse(localStorage.getItem("spinGame")) || {};
-			if (saved.date !== key) {
-				return { coins: 0, total: 0, spinsLeft: 3, date: key };
-			}
-			return saved;
-		}
+    function loadGameState() {
+      const stored = JSON.parse(localStorage.getItem("spinGame")) || {};
+      const today = getTodayKey();
+      if (stored.date !== today) {
+        return {
+          dailyCoins: 0,
+          spinsLeft: 3,
+          totalCoins: stored.totalCoins || 0,
+          date: today
+        };
+      }
+      return stored;
+    }
 
-		function saveState() {
-			localStorage.setItem("spinGame", JSON.stringify(gameState));
-		}
+    let gameState = loadGameState();
+    updateUI();
 
-		let gameState = loadState();
-		updateUI();
+    spinBtn.addEventListener("click", () => {
+      if (gameState.spinsLeft <= 0) {
+        errorSound.play();
+        alert("⛔ You've used all 3 spins for today. Come back tomorrow!");
+        return;
+      }
 
-		spinBtn.addEventListener("click", () => {
-			if (gameState.spinsLeft <= 0) {
-				alert("⛔ You have reached your 3 spins for today. Come back tomorrow!");
-				return;
-			}
+      spinSound.play();
+      const rand = Math.floor(3600 + Math.random() * 3600);
+      deg += rand;
+      wheel.style.transform = `rotate(${deg}deg)`;
+      result.textContent = "Spinning...";
 
-			const rand = Math.floor(3600 + Math.random() * 3600);
-			deg += rand;
-			wheel.style.transform = `rotate(${deg}deg)`;
-			result.textContent = "Spinning...";
+      gameState.spinsLeft--;
+      updateUI();
+      saveGameState();
 
-			gameState.spinsLeft--;
-			updateUI();
-			saveState();
+      setTimeout(() => {
+        const normalized = deg % 360;
+        const index = Math.floor((360 - normalized) / 45) % 8;
+        const prize = segments[index];
 
-			setTimeout(() => {
-				const normalizedDeg = deg % 360;
-				const index = Math.floor((360 - normalizedDeg) / 45) % 8;
-				const prize = segments[index];
+        gameState.dailyCoins += prize.value;
+        gameState.totalCoins += prize.value;
 
-				gameState.coins += prize.value;
-				gameState.total += prize.value;
+        winSound.play();
+        alert(`🎊 Congratulations! You won ${prize.label}`);
+        result.textContent = `🎊 Congratulations! You won ${prize.label}!`;
 
-				result.textContent = `🎉 You won ${prize.label}!`;
-				updateUI();
-				saveState();
-			}, 4000);
-		});
+        updateUI();
+        saveGameState();
+      }, 4000);
+    });
 
-		calcBtn.addEventListener("click", () => {
-			alert(`💰 Total Coins Earned: ${gameState.total}`);
-		});
+    calcBtn.addEventListener("click", () => {
+      alert(`💰 Total Coins Earned (All Time): ${gameState.totalCoins}`);
+    });
 
-		function updateUI() {
-			coinsDisplay.textContent = `Current Coins: ${gameState.coins}`;
-			spinsLeftDisplay.textContent = `Spins Left Today: ${gameState.spinsLeft}`;
-			spinBtn.disabled = gameState.spinsLeft <= 0;
-		}  
+    function updateUI() {
+      coinsDisplay.textContent = `Today's Coins: ${gameState.dailyCoins}`;
+      spinsLeftDisplay.textContent = `Spins Left Today: ${gameState.spinsLeft}`;
+      spinBtn.disabled = gameState.spinsLeft <= 0;
+    }
 
-			
+    function saveGameState() {
+      localStorage.setItem("spinGame", JSON.stringify(gameState));
+    }
 
-
-	</script>
+    window.alert("Welcome to Spin Game Master!");
+  </script>
 </body>
 </html>
-removed game .html file
